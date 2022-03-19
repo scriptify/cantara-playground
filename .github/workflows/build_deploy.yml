@@ -1,0 +1,38 @@
+name: Deploy APP
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+        # Install latest LTS Node.js
+        # Also installs yarn
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install Cantara
+        run: |
+          yarn global add cantara@next
+
+      - name: Install
+        run: |
+          yarn install
+
+      - name: Build
+        run: |
+          cantara build app
+
+      - name: Deploy to foo-bar.surge.sh
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          #domain: 'foo-bar.surge.sh'
+          project: './react-apps/app/build'
+          #login: ${{ secrets.surge_login }}
+          #token: ${{ secrets.surge_token }}
