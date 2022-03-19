@@ -32,7 +32,7 @@ jobs:
       - name: Deploy to foo-bar.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
-          #domain: 'foo-bar.surge.sh'
+          domain: 'cheap-ear.surge.sh'
           project: './react-apps/app/build'
-          #login: ${{ secrets.surge_login }}
-          #token: ${{ secrets.surge_token }}
+          login: ${{ secrets.surge_login }}
+          token: ${{ secrets.surge_token }}
