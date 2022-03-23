@@ -1,20 +1,17 @@
-import React, { useEffect } from 'react';
-import jsqr from 'jsqr';
-import { shiftJISTable } from './shiftJISTable';
+import React, { lazy, Suspense } from 'react';
+const QRCodeScanner = lazy(() => import('./QRCodeScanner'));
 
 type Props = {};
 
 const App = (props: Props) => {
-  useEffect(() => {
-    jsqr(new Uint8ClampedArray(), 100, 100);
-  }, []);
-
   return (
-    <div>
-      What a nice App! Faaaaaakee
-      <br />
-      Shifted: {shiftJISTable[0x81a0]}
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <QRCodeScanner
+        onClose={() => {}}
+        onError={(e: string) => {}}
+        onScanned={(e: string) => {}}
+      />
+    </Suspense>
   );
 };
 
