@@ -79,36 +79,34 @@ const QRCodeScanner = ({ onScanned, onError, onClose }: Props) => {
   }, [webcam]);
 
   return (
-    <>
-      <div
-        id="webcam"
-        style={{ zIndex: 9999 }}
-        className="fixed top-0 left-0 h-full w-full flex items-center justify-center bg-black"
-      >
-        <IonButton className="fixed top-14 left-5" onClick={onClose}>
-          <IonIcon icon={CloseIcon} />
-        </IonButton>
-        <Webcam
-          ref={(ref) => {
-            if (ref) {
-              setWebcam(ref);
-            }
-          }}
-          videoConstraints={{
-            facingMode: 'environment',
-            advanced: [{ torch: true } as any],
-          }}
-          audio={false}
-          width={window.innerWidth}
-          height={window.innerHeight}
-          onError={(e) => {
-            onError('Cannot access webcam');
+    <div
+      id="webcam"
+      style={{ zIndex: 9999 }}
+      className="fixed top-0 left-0 h-full w-full flex items-center justify-center bg-black"
+    >
+      <IonButton className="fixed top-14 left-5" onClick={onClose}>
+        <IonIcon icon={CloseIcon} />
+      </IonButton>
+      <Webcam
+        ref={(ref) => {
+          if (ref) {
+            setWebcam(ref);
+          }
+        }}
+        videoConstraints={{
+          facingMode: 'environment',
+          advanced: [{ torch: true } as any],
+        }}
+        audio={false}
+        width={window.innerWidth}
+        height={window.innerHeight}
+        onError={(e) => {
+          onError('Cannot access webcam');
 
-            onClose();
-          }}
-        />
-      </div>
-    </>
+          onClose();
+        }}
+      />
+    </div>
   );
 };
 
