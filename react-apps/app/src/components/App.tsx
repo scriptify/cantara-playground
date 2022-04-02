@@ -3,6 +3,8 @@ const QRCodeScanner = lazy(() => import('./QRCodeScanner'));
 
 type Props = {};
 
+console.log('trigger deploy');
+
 const App = (props: Props) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
