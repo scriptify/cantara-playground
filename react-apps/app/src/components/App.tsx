@@ -3,7 +3,7 @@ const QRCodeScanner = lazy(() => import('./QRCodeScanner'));
 
 type Props = {};
 
-console.log('trigger deploy 10');
+console.log('trigger deploy 11');
 
 const App = (props: Props) => {
   return (
