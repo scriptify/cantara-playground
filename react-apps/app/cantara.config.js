@@ -5,4 +5,5 @@ module.exports = {
   pwaManifest: {
     start_url: '/?jwt=1234',
   },
+  disableManifest: true,
 };
