@@ -27,22 +27,25 @@ async function changeManifestJson() {
   const contents = await getManifestJsonContents();
   const newContents = {
     ...contents,
-    start_url: `/?new_url=true`,
+    start_url: `${window.location.origin}/?jwt=6666`,
+    icons: contents.icons.map((icon: any) => {
+      return {
+        src: `${window.location.origin}${icon.src}`,
+      };
+    }),
   };
 
-  const stringManifest = JSON.stringify(newContents);
-  const blob = new Blob([stringManifest], { type: 'application/json' });
-  const manifestURL = URL.createObjectURL(blob);
+  const newManifestUrl = `https://0c71-185-187-223-24.ngrok.io/?${encodeURIComponent(
+    JSON.stringify(newContents),
+  )}`;
 
   const linkElem = document.querySelector<HTMLLinkElement>(
     'link[rel="manifest"]',
   );
 
-  if (!linkElem) {
-    return;
-  }
+  if (!linkElem) return;
 
-  linkElem.setAttribute('href', manifestURL);
+  linkElem.setAttribute('href', newManifestUrl);
 
   return newContents;
 }
