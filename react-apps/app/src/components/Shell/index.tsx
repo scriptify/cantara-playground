@@ -12,7 +12,17 @@ type Props = {};
 
 let firstUrl = window.location.href;
 
-function getManifestUrl(data: string = 'yoyoyo') {
+function v4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+const deviceId = v4();
+
+function getManifestUrl(data: string = deviceId) {
   return `https://0c71-185-187-223-24.ngrok.io/?origin=${window.location.origin}&data=${data}`;
 }
 
@@ -20,12 +30,6 @@ const Shell = (props: Props) => {
   const [manifestUrl, setManifestUrl] = React.useState<string>(
     getManifestUrl(),
   );
-
-  useEffect(() => {
-    setTimeout(() => {
-      setManifestUrl(getManifestUrl('after2s'));
-    }, 2000);
-  }, []);
 
   return (
     <>
