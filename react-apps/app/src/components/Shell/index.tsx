@@ -23,6 +23,30 @@ async function getManifestJsonContents() {
   return fetch(manifestUrl).then((response) => response.json());
 }
 
+async function changeManifestJson() {
+  const contents = await getManifestJsonContents();
+  const newContents = {
+    ...contents,
+    start_url: `/?new_url=true`,
+  };
+
+  const stringManifest = JSON.stringify(newContents);
+  const blob = new Blob([stringManifest], { type: 'application/json' });
+  const manifestURL = URL.createObjectURL(blob);
+
+  const linkElem = document.querySelector<HTMLLinkElement>(
+    'link[rel="manifest"]',
+  );
+
+  if (!linkElem) {
+    return;
+  }
+
+  linkElem.setAttribute('href', manifestURL);
+
+  return newContents;
+}
+
 const Shell = (props: Props) => {
   const [manifestJson, setManifestJson] = React.useState<any>();
 
@@ -30,6 +54,11 @@ const Shell = (props: Props) => {
     getManifestJsonContents().then((manifestJson) => {
       setManifestJson(manifestJson);
     });
+
+    setTimeout(async () => {
+      const newManifest = await changeManifestJson();
+      setManifestJson(newManifest);
+    }, 2000);
   }, []);
 
   return (
