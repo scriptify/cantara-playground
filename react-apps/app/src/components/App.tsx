@@ -1,19 +1,28 @@
+import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
 import React, { lazy, Suspense } from 'react';
-const QRCodeScanner = lazy(() => import('./QRCodeScanner'));
+import { Route } from 'react-router-dom';
+import AddToHomescreen from './AddToHomescreen';
+import SetupSw from './SetupSw';
+import Shell from './Shell';
 
-type Props = {};
+import '../css/theme.css';
 
-console.log('trigger deploy 11');
+type Props = {
+  cool?: string;
+};
 
 const App = (props: Props) => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <QRCodeScanner
-        onClose={() => {}}
-        onError={(e: string) => {}}
-        onScanned={(e: string) => {}}
-      />
-    </Suspense>
+    <>
+      <Suspense fallback={<div>Loading...</div>}>
+        <IonApp>
+          <SetupSw />
+          <AddToHomescreen />
+          <Shell />
+        </IonApp>
+      </Suspense>
+    </>
   );
 };
 
