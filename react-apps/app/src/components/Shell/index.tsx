@@ -7,7 +7,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { shiftJISTable } from '../util';
+import { shiftJISTable } from '../table';
 
 type Props = {};
 
