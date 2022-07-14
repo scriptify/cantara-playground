@@ -5,9 +5,9 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import jsQR from 'jsqr';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { shiftJISTable } from '../util';
 
 type Props = {};
 
@@ -33,7 +33,7 @@ const Shell = (props: Props) => {
     getManifestUrl(),
   );
 
-  console.log('jsQR ::::::', jsQR);
+  console.log('shiftJISTable ::::::', shiftJISTable);
 
   return (
     <>
