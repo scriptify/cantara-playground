@@ -20,6 +20,7 @@ jobs:
       - name: Install Cantara
         run: |
           yarn global add cantara@next
+          cantara --version
 
       - name: Install
         run: |
