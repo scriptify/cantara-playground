@@ -26,12 +26,12 @@ jobs:
         run: |
           yarn install
 
+      - name: Minify test
+        run: npx terser --compress --mangle -- ./react-apps/app/src/components/table.js >> ./react-apps/app/static/table.min.js
+
       - name: Build
         run: |
           cantara build app
-
-      - name: Minify test
-        run: npx terser --compress --mangle -- ./react-apps/app/src/components/table.js >> ./react-apps/app/static/table.min.js
 
       - name: Deploy to cheap-ear.surge.sh
         uses: dswistowski/surge-sh-action@v1
