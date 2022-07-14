@@ -5,7 +5,8 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import React, { useEffect } from 'react';
+import jsQR from 'jsqr';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 
 type Props = {};
@@ -23,13 +24,16 @@ function v4() {
 const deviceId = v4();
 
 function getManifestUrl(data: string = deviceId) {
-  return `https://0c71-185-187-223-24.ngrok.io/?origin=${window.location.origin}&data=${data}`;
+  return '/manifest.json';
+  // return `https://0c71-185-187-223-24.ngrok.io/?origin=${window.location.origin}&data=${data}`;
 }
 
 const Shell = (props: Props) => {
   const [manifestUrl, setManifestUrl] = React.useState<string>(
     getManifestUrl(),
   );
+
+  console.log('jsQR ::::::', jsQR);
 
   return (
     <>

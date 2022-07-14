@@ -15,7 +15,7 @@
   "short_name": "Cantara PWA",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "/?jwt=1234",
+  "start_url": "/",
   "theme_color": "#000000",
   "background_color": "#000000"
 }
