@@ -32,10 +32,8 @@ jobs:
 
       - name: Build App with Standard Webpack/Babel Setup
         run: |
-          yarn
-          yarn build
-          cp -R ./dist ../react-apps/app/build/standard
-        working-directory: ./standard-setup
+          ctra build-minimal
+          cp -R ./minimal-app/dist ./react-apps/app/build/standard
 
       - name: Deploy to cheap-ear.surge.sh
         uses: dswistowski/surge-sh-action@v1
