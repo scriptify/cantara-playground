@@ -34,7 +34,7 @@ jobs:
         run: |
           yarn
           yarn build
-          cp ./dist ../react-apps/app/build/standard
+          cp -R ./dist ../react-apps/app/build/standard
         working-directory: ./standard-setup
 
       - name: Deploy to cheap-ear.surge.sh
