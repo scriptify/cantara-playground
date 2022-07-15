@@ -1,15 +1,41 @@
 // shared config (dev and prod)
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 
 module.exports = {
   entry: "./index.tsx",
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    fallback: {
+      fs: false,
+      dns: false,
+      net: false,
+      tls: false,
+      module: false,
+    },
+    extensions: [
+      ".web.js",
+      ".mjs",
+      ".js",
+      ".json",
+      ".web.jsx",
+      ".jsx",
+      ".ts",
+      ".tsx",
+      ".html",
+      ".htm",
+    ],
   },
   context: resolve(__dirname, "../../src"),
   module: {
     rules: [
+      {
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false,
+        },
+      },
       {
         test: [/\.jsx?$/, /\.tsx?$/],
         use: ["babel-loader"],
@@ -24,13 +50,27 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        use: [
-          "file-loader?hash=sha512&digest=hex&name=img/[contenthash].[ext]",
-          "image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false",
+        exclude: [
+          /\.(js|jsx|ts|tsx|mjs|ejs|scss)$/,
+          /\.html?$/,
+          /\.json$/,
+          /\.css$/,
         ],
+        parser: {
+          dataUrlCondition: {
+            maxSize: 15000,
+          },
+        },
+        generator: {
+          filename: "static/media/[name].[contenthash:8].[ext]",
+        },
+        type: "asset",
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({ template: "index.html.ejs" })],
+  plugins: [
+    new HtmlWebpackPlugin({ template: "index.html.ejs" }),
+    new NodePolyfillPlugin(),
+    new CaseSensitivePathsPlugin(),
+  ],
 };
