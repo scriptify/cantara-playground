@@ -1,9 +1,15 @@
 // production config
+const path = require("path");
 const { merge } = require("webpack-merge");
 const { resolve } = require("path");
 const webpack = require("webpack");
 
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const WebpackNotifierPlugin = require("webpack-notifier");
+
 const commonConfig = require("./common");
+
+const projectDir = resolve(__dirname, "../..");
 
 module.exports = merge(commonConfig, {
   mode: "production",
@@ -33,6 +39,21 @@ module.exports = merge(commonConfig, {
   plugins: [
     new webpack.BannerPlugin({
       banner: "filename:[name]",
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        configFile: path.join(projectDir, "tsconfig.json"),
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+        mode: "write-references",
+      },
+      // watch: app.paths.src,
+    }),
+    new WebpackNotifierPlugin({
+      excludeWarnings: true,
+      title: "Anti-Hex-Bug-Division",
     }),
   ],
 });
