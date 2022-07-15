@@ -20,7 +20,6 @@ module.exports = merge(commonConfig, {
     publicPath: "/standard",
     clean: true,
   },
-  devtool: "source-map",
   externals: {
     react: "React",
     "react-dom": "ReactDOM",
