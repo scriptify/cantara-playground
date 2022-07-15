@@ -11,7 +11,6 @@ module.exports = {
       "@babel/preset-env",
       {
         useBuiltIns: "entry",
-        configPath: projectDir,
         corejs: 2,
       },
     ],
