@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./../assets/scss/App.scss";
+import "./../assets/css/App.css";
 import { shiftJISTable } from "./util";
 
 const reactLogo = require("./../assets/img/react_logo.svg");
