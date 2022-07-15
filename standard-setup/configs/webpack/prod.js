@@ -6,6 +6,7 @@ const webpack = require("webpack");
 
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const commonConfig = require("./common");
 
@@ -54,5 +55,10 @@ module.exports = merge(commonConfig, {
       excludeWarnings: true,
       title: "Anti-Hex-Bug-Division",
     }),
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash:4].css",
+      chunkFilename: "[name].[chunkhash:4].css",
+    }),
+    new BundleAnalyzerPlugin({ analyzerMode: "static" }),
   ],
 });

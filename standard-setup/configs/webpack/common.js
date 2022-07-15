@@ -5,9 +5,14 @@ const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const webpack = require("webpack");
 
+const srcDir = resolve(__dirname, "../../src");
+
 module.exports = {
   entry: "./index.tsx",
   resolve: {
+    alias: {
+      "~": srcDir,
+    },
     fallback: {
       fs: false,
       dns: false,
