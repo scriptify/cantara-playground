@@ -3,6 +3,7 @@ const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   entry: "./index.tsx",
@@ -70,7 +71,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: "index.html.ejs" }),
+    new webpack.EnvironmentPlugin({
+      WEBPACK_BUILD_TIMESTAMP: Date.now(),
+    }),
     new NodePolyfillPlugin(),
     new CaseSensitivePathsPlugin(),
   ],
+  stats: {
+    warningsFilter: [/Failed to parse source map/],
+  },
 };
