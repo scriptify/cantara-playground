@@ -1,11 +1,13 @@
 import * as React from "react";
 import "./../assets/css/App.css";
-import { shiftJISTable } from "./util";
+// import { shiftJISTable } from "./util";
 
 const reactLogo = require("./../assets/img/react_logo.svg");
 
 const App = () => {
-  console.log("Table ::::", shiftJISTable);
+  console.log("Table ::::", {
+    0xe69d: 0x8b5a,
+  });
 
   return (
     <div className="app">

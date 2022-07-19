@@ -53,7 +53,7 @@ module.exports = {
       },
       {
         exclude: [
-          /\.(js|jsx|ts|tsx|mjs|ejs|scss)$/,
+          /\.(js|jsx|ts|tsx|mjs|ejs|scss|css)$/,
           /\.html?$/,
           /\.json$/,
           /\.css$/,
