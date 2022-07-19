@@ -23,14 +23,14 @@ module.exports = merge(commonConfig, {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].[contenthash:4].css",
-      chunkFilename: "[name].[chunkhash:4].css",
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: "[name].[contenthash:4].css",
+    //   chunkFilename: "[name].[chunkhash:4].css",
+    // }),
   ],
 });
