@@ -1,25 +1,10 @@
 // shared config (dev and prod)
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
-const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
-const webpack = require("webpack");
-
-const srcDir = resolve(__dirname, "../../src");
 
 module.exports = {
   entry: "./index.tsx",
   resolve: {
-    // alias: {
-    //   "~": srcDir,
-    // },
-    // fallback: {
-    //   fs: false,
-    //   dns: false,
-    //   net: false,
-    //   tls: false,
-    //   module: false,
-    // },
     extensions: [
       ".web.js",
       ".mjs",
@@ -36,12 +21,6 @@ module.exports = {
   context: resolve(__dirname, "../../src"),
   module: {
     rules: [
-      // {
-      //   test: /\.m?js/,
-      //   resolve: {
-      //     fullySpecified: false,
-      //   },
-      // },
       {
         test: [/\.jsx?$/, /\.tsx?$/],
         use: ["babel-loader"],
@@ -70,15 +49,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({ template: "index.html.ejs" }),
-    // new webpack.EnvironmentPlugin({
-    //   WEBPACK_BUILD_TIMESTAMP: Date.now(),
-    // }),
-    // new NodePolyfillPlugin(),
-    // new CaseSensitivePathsPlugin(),
-  ],
-  // stats: {
-  //   warningsFilter: [/Failed to parse source map/],
-  // },
+  plugins: [new HtmlWebpackPlugin({ template: "index.html.ejs" })],
 };
