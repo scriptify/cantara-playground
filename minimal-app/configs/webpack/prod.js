@@ -29,14 +29,14 @@ module.exports = merge(commonConfig, {
   performance: {
     hints: false,
   },
-  optimization: {
-    splitChunks: {
-      chunks: "all",
-    },
-    runtimeChunk: {
-      name: "manifest",
-    },
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: "all",
+  //   },
+  //   runtimeChunk: {
+  //     name: "manifest",
+  //   },
+  // },
   module: {
     rules: [
       {
