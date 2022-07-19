@@ -33,7 +33,4 @@ module.exports = merge(commonConfig, {
       chunkFilename: "[name].[chunkhash:4].css",
     }),
   ],
-  optimization: {
-    minimize: false,
-  },
 });
