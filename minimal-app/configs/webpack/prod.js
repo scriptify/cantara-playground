@@ -37,6 +37,14 @@ module.exports = merge(commonConfig, {
       name: "manifest",
     },
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
+  },
   plugins: [
     new webpack.BannerPlugin({
       banner: "filename:[name]",
