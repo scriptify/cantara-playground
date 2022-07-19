@@ -26,9 +26,9 @@ module.exports = merge(commonConfig, {
     react: "React",
     "react-dom": "ReactDOM",
   },
-  performance: {
-    hints: false,
-  },
+  // performance: {
+  //   hints: false,
+  // },
   // optimization: {
   //   splitChunks: {
   //     chunks: "all",
@@ -46,28 +46,28 @@ module.exports = merge(commonConfig, {
     ],
   },
   plugins: [
-    new webpack.BannerPlugin({
-      banner: "filename:[name]",
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      typescript: {
-        configFile: path.join(projectDir, "tsconfig.json"),
-        diagnosticOptions: {
-          semantic: true,
-          syntactic: true,
-        },
-        mode: "write-references",
-      },
-      // watch: app.paths.src,
-    }),
-    new WebpackNotifierPlugin({
-      excludeWarnings: true,
-      title: "Anti-Hex-Bug-Division",
-    }),
+    // new webpack.BannerPlugin({
+    //   banner: "filename:[name]",
+    // }),
+    // new ForkTsCheckerWebpackPlugin({
+    //   typescript: {
+    //     configFile: path.join(projectDir, "tsconfig.json"),
+    //     diagnosticOptions: {
+    //       semantic: true,
+    //       syntactic: true,
+    //     },
+    //     mode: "write-references",
+    //   },
+    //   // watch: app.paths.src,
+    // }),
+    // new WebpackNotifierPlugin({
+    //   excludeWarnings: true,
+    //   title: "Anti-Hex-Bug-Division",
+    // }),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash:4].css",
       chunkFilename: "[name].[chunkhash:4].css",
     }),
-    new BundleAnalyzerPlugin({ analyzerMode: "static" }),
+    // new BundleAnalyzerPlugin({ analyzerMode: "static" }),
   ],
 });

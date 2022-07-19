@@ -10,16 +10,16 @@ const srcDir = resolve(__dirname, "../../src");
 module.exports = {
   entry: "./index.tsx",
   resolve: {
-    alias: {
-      "~": srcDir,
-    },
-    fallback: {
-      fs: false,
-      dns: false,
-      net: false,
-      tls: false,
-      module: false,
-    },
+    // alias: {
+    //   "~": srcDir,
+    // },
+    // fallback: {
+    //   fs: false,
+    //   dns: false,
+    //   net: false,
+    //   tls: false,
+    //   module: false,
+    // },
     extensions: [
       ".web.js",
       ".mjs",
@@ -36,17 +36,17 @@ module.exports = {
   context: resolve(__dirname, "../../src"),
   module: {
     rules: [
-      {
-        test: /\.m?js/,
-        resolve: {
-          fullySpecified: false,
-        },
-      },
-      {
-        test: [/\.jsx?$/, /\.tsx?$/],
-        use: ["babel-loader"],
-        exclude: /node_modules/,
-      },
+      // {
+      //   test: /\.m?js/,
+      //   resolve: {
+      //     fullySpecified: false,
+      //   },
+      // },
+      // {
+      //   test: [/\.jsx?$/, /\.tsx?$/],
+      //   use: ["babel-loader"],
+      //   exclude: /node_modules/,
+      // },
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
@@ -72,13 +72,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: "index.html.ejs" }),
-    new webpack.EnvironmentPlugin({
-      WEBPACK_BUILD_TIMESTAMP: Date.now(),
-    }),
-    new NodePolyfillPlugin(),
-    new CaseSensitivePathsPlugin(),
+    // new webpack.EnvironmentPlugin({
+    //   WEBPACK_BUILD_TIMESTAMP: Date.now(),
+    // }),
+    // new NodePolyfillPlugin(),
+    // new CaseSensitivePathsPlugin(),
   ],
-  stats: {
-    warningsFilter: [/Failed to parse source map/],
-  },
+  // stats: {
+  //   warningsFilter: [/Failed to parse source map/],
+  // },
 };
