@@ -15,37 +15,20 @@ jobs:
         # Also installs yarn
       - uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: "16"
 
-      - name: Install Cantara
-        run: |
-          yarn global add cantara@next
-          cantara --version
-
-      - name: Install
+      - name: Install dependecies
         run: |
           yarn install
-
-      - name: Build
-        run: |
-          cantara build app
-
-      - name: Install minimal app deps
-        run: |
-          yarn install
-        working-directory: minimal-app
 
       - name: Build App with Standard Webpack/Babel Setup
         run: |
-          yarn
           yarn build
-          cp -R ./dist ../react-apps/app/build/standard
-        working-directory: ./minimal-app
 
       - name: Deploy to cheap-ear.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
-          domain: 'cheap-ear.surge.sh'
-          project: './react-apps/app/build'
+          domain: "cheap-ear.surge.sh"
+          project: "./dist"
           login: ${{ secrets.surge_login }}
           token: ${{ secrets.surge_token }}

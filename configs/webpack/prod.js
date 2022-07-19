@@ -19,7 +19,7 @@ module.exports = merge(commonConfig, {
     filename: "js/[name].[contenthash:4].js",
     chunkFilename: "[name].[chunkhash:4].js",
     path: resolve(__dirname, "../../dist"),
-    publicPath: "/standard",
+    // publicPath: "/standard",
     clean: true,
   },
   externals: {
