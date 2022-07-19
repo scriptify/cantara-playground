@@ -19,6 +19,9 @@ module.exports = merge(commonConfig, {
     react: "React",
     "react-dom": "ReactDOM",
   },
+  optimization: {
+    realContentHash: false,
+  },
   module: {
     rules: [
       {
