@@ -2,10 +2,7 @@ name: Build package
 
 on:
   push:
-    # branches: [main]
-    # Disable this workflow temporarily
-    branches-ignore:
-      - '**'
+    branches: [main]
 
 jobs:
   build:

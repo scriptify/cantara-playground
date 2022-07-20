@@ -2,10 +2,12 @@ name: Deploy APP
 
 on:
   push:
-    branches: [main]
+    #branches: [main]
+    # Disable this workflow temporarily
+    branches-ignore:
+      - '**'
 
 jobs:
-  if: ${{ false }} # Disable job temporarily
   build:
     runs-on: ubuntu-latest
 
