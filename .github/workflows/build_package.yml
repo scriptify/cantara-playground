@@ -22,6 +22,10 @@ jobs:
           yarn global add cantara@next
           cantara --version
 
+      - name: Install deps
+        run: |
+          yarn install
+
       - name: Build package
         run: |
           ctra build test-package
