@@ -5,6 +5,7 @@ on:
     branches: [main]
 
 jobs:
+  if: ${{ false }} # Disable job temporarily
   build:
     runs-on: ubuntu-latest
 
@@ -29,16 +30,6 @@ jobs:
       - name: Build
         run: |
           cantara build app
-
-      - name: Install minimal app deps
-        run: |
-          yarn install
-        working-directory: minimal-app
-
-      - name: Build App with Standard Webpack/Babel Setup
-        run: |
-          cantara build-minimal
-          cp -R ./minimal-app/dist ./react-apps/app/build/standard
 
       - name: Deploy to cheap-ear.surge.sh
         uses: dswistowski/surge-sh-action@v1

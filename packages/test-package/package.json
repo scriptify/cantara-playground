@@ -1,0 +1,10 @@
+{
+  "name": "test-package",
+  "version": "1.0.0",
+  "main": "build/cjs/index.js",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {},
+  "module": "build/esm/index.js",
+  "types": "./build/types/index.d.ts"
+}

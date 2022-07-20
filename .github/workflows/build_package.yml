@@ -1,0 +1,30 @@
+name: Build package
+
+on:
+  push:
+    # branches: [main]
+    # Disable this workflow temporarily
+    branches-ignore:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+        # Install latest LTS Node.js
+        # Also installs yarn
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install Cantara
+        run: |
+          yarn global add cantara@next
+          cantara --version
+
+      - name: Build package
+        run: |
+          ctra build test-package
