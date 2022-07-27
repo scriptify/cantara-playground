@@ -1,12 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from '~/components/App';
-import { shiftJISTable } from './components/util';
 
-const TestApp = () => {
-  console.log('shiftJISTable ::::::', shiftJISTable);
+import App from '~/components/App';
 
-  return <div>Hello, I am not real.</div>;
-};
-
-ReactDOM.render(<TestApp />, document.querySelector('#app'));
+ReactDOM.render(<App />, document.querySelector('#app'));

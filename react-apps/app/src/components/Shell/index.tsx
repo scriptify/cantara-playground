@@ -7,7 +7,6 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { shiftJISTable } from '../util';
 
 type Props = {};
 
@@ -28,12 +27,40 @@ function getManifestUrl(data: string = deviceId) {
   // return `https://0c71-185-187-223-24.ngrok.io/?origin=${window.location.origin}&data=${data}`;
 }
 
+function iosInfo() {
+  const standalone = (window.navigator as any).standalone;
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  const safari = /safari/.test(userAgent);
+  const ios = /iphone|ipod|ipad/.test(userAgent);
+
+  let safari_type: 'safari_normal' | 'safari_pwa' | 'safari_inapp' | 'not_ios' =
+    'not_ios';
+
+  if (ios) {
+    if (!standalone && safari) {
+      safari_type = 'safari_normal';
+    } else if (standalone && !safari) {
+      //standalone
+      safari_type = 'safari_pwa';
+    } else if (!standalone && !safari) {
+      //uiwebview
+      safari_type = 'safari_inapp';
+    }
+  }
+
+  return {
+    safari_type,
+    standalone,
+    userAgent,
+    safari,
+    ios,
+  };
+}
+
 const Shell = (props: Props) => {
   const [manifestUrl, setManifestUrl] = React.useState<string>(
     getManifestUrl(),
   );
-
-  console.log('shiftJISTable ::::::', shiftJISTable);
 
   return (
     <>
@@ -62,6 +89,7 @@ const Shell = (props: Props) => {
               <br />
               <span>{manifestUrl}</span>
             </p>
+            <p>{JSON.stringify(iosInfo(), null, 2)}</p>
           </div>
         </IonContent>
       </IonPage>

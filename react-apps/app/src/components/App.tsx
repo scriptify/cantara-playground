@@ -17,7 +17,7 @@ const App = (props: Props) => {
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <IonApp>
-          {/* <SetupSw /> */}
+          <SetupSw />
           <AddToHomescreen />
           <Shell />
         </IonApp>
