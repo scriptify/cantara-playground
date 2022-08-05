@@ -27,33 +27,57 @@ function getManifestUrl(data: string = deviceId) {
   // return `https://0c71-185-187-223-24.ngrok.io/?origin=${window.location.origin}&data=${data}`;
 }
 
+function isIOSInAppBrowser() {
+  // Check if device is iPad, iPhone or iPod (this bit is naive and should probably check additional stuff)
+  if (Boolean(window.navigator.userAgent.match(/iPad|iPhone|iPod/)) === false)
+    return false;
+
+  // Check if navigator is standalone but display-mode isn't
+  if (
+    (window.navigator as any).standalone === true &&
+    window.matchMedia('(display-mode: standalone)').matches === false
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function iosInfo() {
   const standalone = (window.navigator as any).standalone;
   const userAgent = window.navigator.userAgent.toLowerCase();
   const safari = /safari/.test(userAgent);
   const ios = /iphone|ipod|ipad/.test(userAgent);
+  const standaloneDisplayMode = window.matchMedia(
+    '(display-mode: standalone)',
+  ).matches;
+  const isInAppBrowser = standalone && !standaloneDisplayMode;
+  const isPWA = standalone && standaloneDisplayMode;
 
-  let safari_type: 'safari_normal' | 'safari_pwa' | 'safari_inapp' | 'not_ios' =
+  let safariType: 'safari_normal' | 'safari_pwa' | 'safari_inapp' | 'not_ios' =
     'not_ios';
 
   if (ios) {
     if (!standalone && safari) {
-      safari_type = 'safari_normal';
+      safariType = 'safari_normal';
     } else if (standalone && !safari) {
       //standalone
-      safari_type = 'safari_pwa';
+      safariType = 'safari_pwa';
     } else if (!standalone && !safari) {
       //uiwebview
-      safari_type = 'safari_inapp';
+      safariType = 'safari_inapp';
     }
   }
 
   return {
-    safari_type,
+    safariType,
+    standaloneDisplayMode,
     standalone,
     userAgent,
     safari,
     ios,
+    isInAppBrowser,
+    isPWA,
   };
 }
 
@@ -89,7 +113,9 @@ const Shell = (props: Props) => {
               <br />
               <span>{manifestUrl}</span>
             </p>
-            <p>{JSON.stringify(iosInfo(), null, 2)}</p>
+            <p style={{ whiteSpace: 'pre-wrap' }}>
+              {JSON.stringify(iosInfo(), null, 2)}
+            </p>
           </div>
         </IonContent>
       </IonPage>
