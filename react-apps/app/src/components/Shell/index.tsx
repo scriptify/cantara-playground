@@ -7,6 +7,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { copyTextToClipboard } from './util';
 
 type Props = {};
 
@@ -21,6 +22,65 @@ function v4() {
 }
 
 const deviceId = v4();
+
+function getNavigatorInformation() {
+  const keys: string[] = [
+    'appCodeName',
+    'appName',
+    'appVersion',
+    'bluetooth',
+    'clipboard',
+    'connection',
+    'cookieEnabled',
+    'credentials',
+    'deviceMemory',
+    'doNotTrack',
+    'geolocation',
+    'hardwareConcurrency',
+    'hid',
+    'ink',
+    'keyboard',
+    'language',
+    'languages',
+    'locks',
+    'managed',
+    'maxTouchPoints',
+    'mediaCapabilities',
+    'mediaDevices',
+    'mediaSession',
+    'mimeTypes',
+    'onLine',
+    'pdfViewerEnabled',
+    'permissions',
+    'platform',
+    'plugins',
+    'presentation',
+    'product',
+    'productSub',
+    'scheduling',
+    'serial',
+    'serviceWorker',
+    'storage',
+    'usb',
+    'userActivation',
+    'userAgent',
+    'userAgentData',
+    'vendor',
+    'vendorSub',
+    'virtualKeyboard',
+    'wakeLock',
+    'webdriver',
+    'webkitPersistentStorage',
+    'webkitTemporaryStorage',
+    'xr',
+  ];
+  return keys.reduce((acc, key) => {
+    return {
+      ...acc,
+      [key]: navigator[key as keyof typeof window.navigator],
+    };
+  }, {} as any);
+}
 
 function getManifestUrl(data: string = deviceId) {
   return '/manifest.json';
@@ -78,6 +138,7 @@ function iosInfo() {
     ios,
     isInAppBrowser,
     isPWA,
+    navigatorInformation: getNavigatorInformation(),
   };
 }
 
@@ -85,6 +146,8 @@ const Shell = (props: Props) => {
   const [manifestUrl, setManifestUrl] = React.useState<string>(
     getManifestUrl(),
   );
+
+  const deviceInfo = JSON.stringify(iosInfo(), null, 2);
 
   return (
     <>
@@ -113,9 +176,17 @@ const Shell = (props: Props) => {
               <br />
               <span>{manifestUrl}</span>
             </p>
-            <p style={{ whiteSpace: 'pre-wrap' }}>
-              {JSON.stringify(iosInfo(), null, 2)}
-            </p>
+            <div>
+              <button
+                onClick={() => {
+                  copyTextToClipboard(deviceInfo);
+                }}
+                style={{}}
+              >
+                Copy to clipboard
+              </button>
+            </div>
+            <p style={{ whiteSpace: 'pre-wrap' }}>{deviceInfo}</p>
           </div>
         </IonContent>
       </IonPage>
