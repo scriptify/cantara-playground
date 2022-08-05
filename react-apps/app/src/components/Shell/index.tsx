@@ -51,8 +51,8 @@ function iosInfo() {
   const standaloneDisplayMode = window.matchMedia(
     '(display-mode: standalone)',
   ).matches;
-  const isInAppBrowser = standalone && !standaloneDisplayMode;
-  const isPWA = standalone && standaloneDisplayMode;
+  const isInAppBrowser = Boolean(standalone && !standaloneDisplayMode);
+  const isPWA = Boolean(standalone && standaloneDisplayMode);
 
   let safariType: 'safari_normal' | 'safari_pwa' | 'safari_inapp' | 'not_ios' =
     'not_ios';
