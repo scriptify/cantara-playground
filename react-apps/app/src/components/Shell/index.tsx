@@ -194,6 +194,7 @@ const Shell = (props: Props) => {
               <button onClick={createOpenPopup('_self')}>Open _self</button>
               <button onClick={createOpenPopup('_top')}>Open _top</button>
               <button onClick={createOpenPopup('_parent')}>Open _parent</button>
+
               <button
                 onClick={() => {
                   copyTextToClipboard(deviceInfo);
@@ -202,6 +203,40 @@ const Shell = (props: Props) => {
               >
                 Copy to clipboard
               </button>
+
+              <div
+                style={{
+                  marginTop: '1rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.5rem',
+                }}
+              >
+                <a
+                  href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy"
+                  target="_blank"
+                >
+                  Open _blank link
+                </a>
+                <a
+                  href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy"
+                  target="_self"
+                >
+                  Open _self link
+                </a>
+                <a
+                  href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy"
+                  target="_top"
+                >
+                  Open _top link
+                </a>
+                <a
+                  href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy"
+                  target="_parent"
+                >
+                  Open _parent link
+                </a>
+              </div>
             </div>
             <p style={{ whiteSpace: 'pre-wrap' }}>{deviceInfo}</p>
           </div>
