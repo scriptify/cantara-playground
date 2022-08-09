@@ -1,22 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-const wasOpenedFromWebView = window.location.search.includes('isWebView=true');
-
-export function useCheckForWebView() {
-  const [isWebview, setIsWebview] = useState(wasOpenedFromWebView);
-
+export function usePopup() {
   function createOpenPopup(
     mode: '_blank' | '_self' | '_parent' | '_top' = '_self',
   ) {
     return () => {
-      if (wasOpenedFromWebView) return;
       const windowHandle = window.open(
-        `${window.location.origin}/?isWebView=true`,
+        `${window.location.origin}/open`,
         mode,
+        'opener',
       );
-      if (windowHandle) {
+      if (windowHandle && mode === '_blank') {
         windowHandle.close();
-        setIsWebview(false);
       }
     };
   }
@@ -30,7 +25,6 @@ export function useCheckForWebView() {
   const hasOpener = window.opener !== null;
 
   return {
-    isWebview,
     createOpenPopup,
     hasOpener,
     isChildWindow,

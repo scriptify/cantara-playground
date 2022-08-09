@@ -4,7 +4,8 @@ import React, { lazy, Suspense } from 'react';
 import { Route } from 'react-router-dom';
 import AddToHomescreen from './AddToHomescreen';
 import SetupSw from './SetupSw';
-import Shell from './Shell';
+import TestDeviceCapabilities from './TestDeviceCapabilities';
+import OpenTarget from './OpenTarget';
 
 import '../css/theme.css';
 
@@ -19,7 +20,14 @@ const App = (props: Props) => {
         <IonApp>
           <SetupSw />
           <AddToHomescreen />
-          <Shell />
+          <IonReactRouter>
+            <Route path="/" exact>
+              <TestDeviceCapabilities />
+            </Route>
+            <Route path="/open" exact>
+              <OpenTarget />
+            </Route>
+          </IonReactRouter>
         </IonApp>
       </Suspense>
     </>

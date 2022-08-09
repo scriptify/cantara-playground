@@ -7,7 +7,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { useCheckForWebView } from './useCheckForWebView';
+import { usePopup } from './usePopup';
 import { copyTextToClipboard } from './util';
 
 type Props = {};
@@ -146,12 +146,12 @@ function iosInfo() {
   };
 }
 
-const Shell = (props: Props) => {
+const TestDeviceCapabilities = (props: Props) => {
   const [manifestUrl, setManifestUrl] = React.useState<string>(
     getManifestUrl(),
   );
 
-  const { createOpenPopup, ...WEB_VIEW_INFO } = useCheckForWebView();
+  const { createOpenPopup, ...WEB_VIEW_INFO } = usePopup();
 
   let infoToPrint = iosInfo() as any;
 
@@ -213,25 +213,29 @@ const Shell = (props: Props) => {
                 }}
               >
                 <a
-                  href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy"
+                  href={`${window.location.origin}/open`}
+                  rel="opener"
                   target="_blank"
                 >
                   Open _blank link
                 </a>
                 <a
-                  href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy"
+                  href={`${window.location.origin}/open`}
+                  rel="opener"
                   target="_self"
                 >
                   Open _self link
                 </a>
                 <a
-                  href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy"
+                  href={`${window.location.origin}/open`}
+                  rel="opener"
                   target="_top"
                 >
                   Open _top link
                 </a>
                 <a
-                  href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy"
+                  href={`${window.location.origin}/open`}
+                  rel="opener"
                   target="_parent"
                 >
                   Open _parent link
@@ -246,4 +250,4 @@ const Shell = (props: Props) => {
   );
 };
 
-export default Shell;
+export default TestDeviceCapabilities;
