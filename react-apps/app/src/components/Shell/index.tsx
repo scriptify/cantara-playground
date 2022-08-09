@@ -148,7 +148,7 @@ const Shell = (props: Props) => {
     getManifestUrl(),
   );
 
-  const WEB_VIEW_INFO = useCheckForWebView();
+  const { createOpenPopup, ...WEB_VIEW_INFO } = useCheckForWebView();
 
   let infoToPrint = iosInfo() as any;
 
@@ -187,6 +187,10 @@ const Shell = (props: Props) => {
               <span>{manifestUrl}</span>
             </p>
             <div>
+              <button onClick={createOpenPopup('_blank')}>Open _blank</button>
+              <button onClick={createOpenPopup('_self')}>Open _self</button>
+              <button onClick={createOpenPopup('_top')}>Open _top</button>
+              <button onClick={createOpenPopup('_parent')}>Open _parent</button>
               <button
                 onClick={() => {
                   copyTextToClipboard(deviceInfo);
