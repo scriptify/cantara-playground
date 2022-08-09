@@ -7,6 +7,7 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { useCheckForWebView } from './useCheckForWebView';
 import { copyTextToClipboard } from './util';
 
 type Props = {};
@@ -147,7 +148,16 @@ const Shell = (props: Props) => {
     getManifestUrl(),
   );
 
-  const deviceInfo = JSON.stringify(iosInfo(), null, 2);
+  const WEB_VIEW_INFO = useCheckForWebView();
+
+  let infoToPrint = iosInfo() as any;
+
+  infoToPrint = {
+    WEB_VIEW_INFO,
+    ...infoToPrint,
+  };
+
+  let deviceInfo = JSON.stringify(infoToPrint, null, 2);
 
   return (
     <>
