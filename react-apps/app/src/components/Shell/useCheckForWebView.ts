@@ -19,5 +19,5 @@ export function useCheckForWebView() {
   const isChildWindow = window.parent !== window.top;
   const hasOpener = window.opener !== null;
 
-  return { isWebview, hasOpener };
+  return { isWebview, hasOpener, isChildWindow };
 }
