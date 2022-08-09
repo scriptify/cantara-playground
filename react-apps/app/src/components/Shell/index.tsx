@@ -105,6 +105,8 @@ function isIOSInAppBrowser() {
 }
 
 function iosInfo() {
+  const isGetUserMediaDefined = !!navigator.mediaDevices.getUserMedia;
+
   const standalone = (window.navigator as any).standalone;
   const userAgent = window.navigator.userAgent.toLowerCase();
   const safari = /safari/.test(userAgent);
@@ -131,6 +133,7 @@ function iosInfo() {
   }
 
   return {
+    isGetUserMediaDefined,
     safariType,
     standaloneDisplayMode,
     standalone,
