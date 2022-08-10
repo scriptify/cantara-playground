@@ -29,6 +29,7 @@ jobs:
       - name: Build
         run: |
           cantara build app
+          cp ./react-apps/app/build/index.html ./react-apps/app/build/200.html
 
       - name: Deploy to cheap-ear.surge.sh
         uses: dswistowski/surge-sh-action@v1
