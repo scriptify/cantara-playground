@@ -4,10 +4,11 @@ import React, { lazy, Suspense } from 'react';
 import { Route } from 'react-router-dom';
 import AddToHomescreen from './AddToHomescreen';
 import SetupSw from './SetupSw';
-import TestDeviceCapabilities from './TestDeviceCapabilities';
+// import TestDeviceCapabilities from './TestDeviceCapabilities';
 import OpenTarget from './OpenTarget';
 
 import '../css/theme.css';
+import TestDeviceStorage from './TestDeviceStorage';
 
 type Props = {
   cool?: string;
@@ -22,7 +23,7 @@ const App = (props: Props) => {
           <AddToHomescreen />
           <IonReactRouter>
             <Route path="/" exact>
-              <TestDeviceCapabilities />
+              <TestDeviceStorage />
             </Route>
             <Route path="/open" exact>
               <OpenTarget />

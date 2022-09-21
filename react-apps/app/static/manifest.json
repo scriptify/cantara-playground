@@ -11,8 +11,8 @@
       "type": "image/png"
     }
   ],
-  "name": "Cantara PWA",
-  "short_name": "Cantara PWA",
+  "name": "PWA Capabilites Test",
+  "short_name": "PWA Cap Test",
   "orientation": "portrait",
   "display": "standalone",
   "start_url": "/",
