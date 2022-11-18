@@ -54,6 +54,13 @@ const TestDeviceStorage = (props: Props) => {
             there or was deleted by the OS. <br />
             Thanks for helping resolve this issue!
           </p>
+          <p>
+            AND: It's a PDF test app.
+            <br />
+            <a href="https://d2shqc1yrdewlk.cloudfront.net/2021_Bistro_Eiskarte_A4_deutsch_ital_ohne_Eis_docx_ab451ed575_1_d8ca108d86.pdf">
+              Click here to open the PDF
+            </a>
+          </p>
           <IonList>
             {timestamps.map((timestamp) => (
               <IonItem key={timestamp.storageType}>
